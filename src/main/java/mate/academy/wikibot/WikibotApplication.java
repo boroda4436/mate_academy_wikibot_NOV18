@@ -9,5 +9,4 @@ public class WikibotApplication {
     public static void main(String[] args) {
         SpringApplication.run(WikibotApplication.class, args);
     }
-
 }
