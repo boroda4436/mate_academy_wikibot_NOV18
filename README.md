@@ -34,6 +34,7 @@ As developer u will need pc or laptop with Intelij Idea program on it and GitHub
 CONTRIBUTE
 
 Please, DO NOT PUSH ANY TOKEN OR API KEY, I will never accept a pull request with that content.
+
 Feel free to fork this project, work on it and then make a pull request against DEV branch. Most of the times I will accept them if they add something valuable to the code.
 
 [Writing by Danny73210] @WikiLookUpBot
