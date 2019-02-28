@@ -14,7 +14,26 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 **DESCRIPTION**
 
+PURPOSE
+
 This is Telegram Bot which takes users request to find some wiki-information
 using Telegram & Wiki API
+
+STRUCTURE
+
+Using API of Telegram and Wikipedia to create telegram boot which process user request and finding most similar information on wikipedia
+
+AS USER
+
+As user u need to open your telegram application and find bot @WikiLookUpBot. Next u need to choose "look up" button to type your request, after that u will receive wiki-information
+
+AS DEVELOPER
+
+As developer u will need pc or laptop with Intelij Idea program on it and GitHub account. Next u need to 'fork' project and open in your Intelij Idea program and develope!
+
+CONTRIBUTE
+
+Please, DO NOT PUSH ANY TOKEN OR API KEY, I will never accept a pull request with that content.
+Feel free to fork this project, work on it and then make a pull request against DEV branch. Most of the times I will accept them if they add something valuable to the code.
 
 [Writing by Danny73210] @WikiLookUpBot
