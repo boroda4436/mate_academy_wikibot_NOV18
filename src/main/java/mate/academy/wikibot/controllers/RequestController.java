@@ -4,8 +4,17 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Class for sending request and receiving response.
+ *
+ * @author Anatolii Levitskii
+ * @version 1.0
+ */
 public class RequestController {
 
+    /**
+     * Method for sending request and receiving response.
+     */
     public static String doRequest(String link, String requestMethod) {
 
         HttpURLConnection connection = null;
