@@ -1,0 +1,2 @@
+The YouTubeBot is the app that can enrich Telegram chats with content from integrated YouTube service and help you find and share YouTube videos.
+Created by Mate Academy team started Java course at November 2018.
