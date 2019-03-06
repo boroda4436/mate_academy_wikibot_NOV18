@@ -1,0 +1,11 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8 -browsers
+
+    steps:
+      - checkout
+      - run: mvn clean install
+      - run: mvn checkstyle:check
+      - run: mvn test
