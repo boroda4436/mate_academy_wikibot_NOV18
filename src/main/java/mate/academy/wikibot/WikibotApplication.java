@@ -19,7 +19,8 @@ public class WikibotApplication {
         /*
          * Link on which the request is executed.
          */
-        String query = "http://www.google.com.ua";
+//        String query = "https://www.googleapis.com/youtube/v3/videos";
+        String query = "https://developers.google.com/youtube/v3/code_samples/java#search_by_keyword";
 
         /*
          * Method for executing request and receiving response.

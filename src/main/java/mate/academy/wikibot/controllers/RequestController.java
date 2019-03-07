@@ -1,8 +1,17 @@
 package mate.academy.wikibot.controllers;
 
+import mate.academy.wikibot.http.HttpClientHandler;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.CloseableHttpClient;
+
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.InputMismatchException;
 
 /**
  * Class for sending request and receiving response.
@@ -14,35 +23,50 @@ public class RequestController {
     /**
      * Method for sending request and receiving response.
      */
-    public static String doRequest(String link, String requestMethod) {
+    public static HttpResponse doRequest(String api, String requestMethod) {
 
-        HttpURLConnection connection = null;
-        String responseMessage = null;
+        HttpUriRequest request = (HttpUriRequest) RequestController.findOutRequestMethod(requestMethod, api);
+        HttpResponse response = null;
 
-        try {
-            connection = (HttpURLConnection) new URL(link).openConnection();
-
-            connection.setRequestMethod(requestMethod);
-            connection.setUseCaches(false);
-            connection.setConnectTimeout(250);
-            connection.setReadTimeout(250);
-
-            connection.connect();
-
-            if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
-                responseMessage = "Status: " + connection.getResponseCode() + ". Congradulation!!!";
-            } else {
-                responseMessage = "Failed. RECEIVE RESPONSE CODE:" + connection.getResponseCode()
-                        + ". RESPONSE MESSAGE: " + connection.getResponseMessage();
-            }
+        try (
+                CloseableHttpClient client = (CloseableHttpClient) HttpClientHandler.getHttpClient();
+                CloseableHttpResponse resp = client.execute(request)
+        ) {
+            response = resp;
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                connection.disconnect();
-            }
         }
 
-        return responseMessage;
+        return response;
+    }
+
+    static HttpRequest findOutRequestMethod(String request, String api) {
+
+        HttpRequest requestReturn = null;
+
+        try {
+            switch (request) {
+                case ("GET"):
+                    requestReturn = new HttpGet(api);
+                    break;
+
+                case ("POST"):
+                    requestReturn = new HttpPost(api);
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("You input wrong request method: " + request);
+            }
+        } catch (InputMismatchException ime) {
+            System.out.println("You input wrong request method: " + request);
+        }
+
+        if (requestReturn == null) {
+            throw new IllegalArgumentException("You input wrong request method: " + request);
+        }
+
+        return requestReturn;
     }
 }
