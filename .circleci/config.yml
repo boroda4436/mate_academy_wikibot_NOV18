@@ -11,4 +11,4 @@ jobs:
     steps:
       - checkout
       # run tests!
-      - run: mvn test
+      - run: mvn integration-test
