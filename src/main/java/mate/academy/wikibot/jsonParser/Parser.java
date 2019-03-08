@@ -18,14 +18,14 @@ import java.util.Properties;
 
 public class Parser {
 
-    public static JSONArray getVideoJSON(String q, String topicId) {
+    public static JSONArray getVideoJSON(String keyWord, String topicId) {
         final String API_KEY = getApiKey();
         final String URL = String.format("https://www.googleapis.com/youtube/v3/search?part=snippet" +
                 "&maxResults=25" +
                 "&q=%s" +
                 "&topicId=%s" +
                 "&fields=items(id%%2FvideoId%%2Csnippet%%2Ftitle)" +
-                "&key=%s", q, topicId, API_KEY);
+                "&key=%s", keyWord, topicId, API_KEY);
 
         try {
             HttpClient client = ClientHandler.getHttpClientInstance();
@@ -56,9 +56,5 @@ public class Parser {
         } catch (IOException e) {
             throw new MyException(e);
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Parser.getVideoJSON("avatar","1"));
     }
 }

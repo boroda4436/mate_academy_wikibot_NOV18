@@ -9,9 +9,9 @@ public class ClientHandler {
     private ClientHandler() {
     }
 
-    public static HttpClient getHttpClientInstance(){
-        if(httpClient == null)
-         return HttpClientBuilder.create().build();
+    public static HttpClient getHttpClientInstance() {
+        if (httpClient == null)
+            return HttpClientBuilder.create().build();
         else return httpClient;
     }
 }
