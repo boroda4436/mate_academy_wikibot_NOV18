@@ -1,12 +1,12 @@
-package mate.academy.wikibot.http;
+package mate.academy.wikibot.httpClient;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-public class HttpClientHandler {
+public class ClientHandler {
     private static HttpClient httpClient = getHttpClient();
 
-    private HttpClientHandler() {
+    private ClientHandler() {
     }
 
     public static HttpClient getHttpClient(){
