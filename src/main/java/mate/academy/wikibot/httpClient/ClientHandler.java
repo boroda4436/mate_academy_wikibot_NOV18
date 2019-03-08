@@ -12,6 +12,8 @@ public class ClientHandler {
     public static HttpClient getHttpClientInstance() {
         if (httpClient == null)
             return HttpClientBuilder.create().build();
-        else return httpClient;
+        else {
+            return httpClient;
+        }
     }
 }
