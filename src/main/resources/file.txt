@@ -1,0 +1,2 @@
+user.name=wiki_mate_academy_bot
+telegram.token=536065274:AAEL-fRfzbXB5EM-FNsDutBLYvSDhQHWx10
