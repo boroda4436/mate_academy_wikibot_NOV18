@@ -7,10 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.InputMismatchException;
-
-import static org.junit.Assert.*;
-
 public class RequestControllerTest {
 
     String api = "https://developers.google.com/youtube/v3/code_samples/java#search_by_keyword";
