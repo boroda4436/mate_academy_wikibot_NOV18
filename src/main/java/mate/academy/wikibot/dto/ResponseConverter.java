@@ -8,6 +8,9 @@ import lombok.Data;
 @Data
 public class ResponseConverter {
 
+    /**
+     * Method.
+     */
     public MessageEntityDto convertToMessage(ResponseDto responseDto) {
         MessageEntityDto messageEntityDto = new MessageEntityDto();
         messageEntityDto.setUrl(responseDto.getVideoId());
