@@ -55,9 +55,9 @@ public class RequestControllerTest {
 
         try {
             RequestController.findOutRequestMethod("WRONG", api);
-            Assert.fail("You input wrong request method: " + "WRONG");
+            Assert.fail("Wrong request method name: " + "WRONG");
         } catch (IllegalArgumentException e) {
-            Assert.assertEquals("You input wrong request method: WRONG",
+            Assert.assertEquals("Wrong request method name: WRONG",
                     e.getMessage());
         }
     }

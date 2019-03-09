@@ -61,11 +61,11 @@ public class RequestController {
                     throw new IllegalArgumentException("Wrong request method name: " + request);
             }
         } catch (InputMismatchException ime) {
-            System.out.println("You input wrong request method: " + request);
+            System.out.println("Wrong request method name: " + request);
         }
 
         if (requestReturn == null) {
-            throw new IllegalArgumentException("You input wrong request method: " + request);
+            throw new IllegalArgumentException("Wrong request method name: " + request);
         }
 
         return requestReturn;
