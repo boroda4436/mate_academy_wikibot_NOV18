@@ -1,5 +1,8 @@
 package mate.academy.wikibot.controllers;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
+
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -9,9 +12,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-
-import java.io.IOException;
-import java.util.InputMismatchException;
 
 /**
  * Class for sending request and receiving response.
@@ -25,7 +25,8 @@ public class RequestController {
      */
     public static HttpResponse doRequest(String api, String requestMethod) {
 
-        HttpUriRequest request = (HttpUriRequest) RequestController.findOutRequestMethod(requestMethod, api);
+        HttpUriRequest request =
+                (HttpUriRequest) RequestController.findOutRequestMethod(requestMethod, api);
         HttpResponse response = null;
 
         try (
@@ -57,7 +58,7 @@ public class RequestController {
                     break;
 
                 default:
-                    throw new IllegalArgumentException("You input wrong request method: " + request);
+                    throw new IllegalArgumentException("Wrong request method name: " + request);
             }
         } catch (InputMismatchException ime) {
             System.out.println("You input wrong request method: " + request);

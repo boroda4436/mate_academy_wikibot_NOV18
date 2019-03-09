@@ -20,7 +20,8 @@ public class RequestControllerTest {
 
     @Test
     public void doRequestGet() {
-        String actualResponseGet = RequestController.doRequest(api, "GET").toString().substring(0, 33);
+        String actualResponseGet =
+                RequestController.doRequest(api, "GET").toString().substring(0, 33);
 
         Assert.assertEquals(expectedResponseGet, actualResponseGet);
     }
