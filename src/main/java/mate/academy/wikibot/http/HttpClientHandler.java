@@ -2,7 +2,7 @@ package mate.academy.wikibot.http;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-
+//committ
 public class HttpClientHandler {
     private static HttpClient httpClient = getHttpClient();
 
