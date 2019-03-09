@@ -1,6 +1,5 @@
 package mate.academy.wikibot.controllers;
 
-import mate.academy.wikibot.http.HttpClientHandler;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -9,6 +8,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -29,7 +29,7 @@ public class RequestController {
         HttpResponse response = null;
 
         try (
-                CloseableHttpClient client = (CloseableHttpClient) HttpClientHandler.getHttpClient();
+                CloseableHttpClient client = HttpClients.createDefault();
                 CloseableHttpResponse resp = client.execute(request)
         ) {
             response = resp;
