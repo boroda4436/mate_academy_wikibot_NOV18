@@ -19,6 +19,7 @@
         <checkstyleVersion>8.18</checkstyleVersion>
         <mavenCheckstylePluginVersion>2.17</mavenCheckstylePluginVersion>
         <sevntuVersion>1.24.2</sevntuVersion>
+        <mavenSurefirePlugin.version>3.0.0-M3</mavenSurefirePlugin.version>
     </properties>
 
     <dependencies>
@@ -96,7 +97,11 @@
                     </execution>
                 </executions>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${mavenSurefirePlugin.version}</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
