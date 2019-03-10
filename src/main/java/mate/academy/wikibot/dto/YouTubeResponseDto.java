@@ -3,7 +3,7 @@ package mate.academy.wikibot.dto;
 import lombok.Data;
 
 @Data
-public class ResponseDto {
+public class YouTubeResponseDto {
     private String videoId;
     private String title;
 }
