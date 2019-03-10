@@ -16,7 +16,7 @@ HELP.md
 *.iws
 *.iml
 *.ipr
-*.properties
+
 
 ### NetBeans ###
 /nbproject/private/
@@ -25,4 +25,3 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
-application.properties
