@@ -1,15 +1,16 @@
 package mate.academy.wikibot;
 
-import mate.academy.bot.BotConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.telegram.telegrambots.ApiContextInitializer;
 
-@ComponentScan(value = "mate.academy")
 @SpringBootApplication
+@ComponentScan("mate.academy")
 public class WikibotApplication {
 
     public static void main(String[] args) {
+        ApiContextInitializer.init();
         SpringApplication.run(WikibotApplication.class, args);
     }
 }

@@ -1,25 +1,25 @@
 package mate.academy.bot;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
+import org.telegram.telegrambots.meta.generics.LongPollingBot;
 
 import javax.annotation.PostConstruct;
 
 @Component
 public class BotConfig {
-    public BotConfig() {
-        init();
-    }
+
+    @Autowired
+    private LongPollingBot bot;
 
     @PostConstruct
-    private void init() {
-        ApiContextInitializer.init(); // Инициализируем апи
-        TelegramBotsApi botapi = new TelegramBotsApi();
+    public void init() {
+        TelegramBotsApi botsApi = new TelegramBotsApi();
         try {
-            botapi.registerBot(new Bot());
-        } catch (TelegramApiException e) {
+            botsApi.registerBot(bot);
+        } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
     }
