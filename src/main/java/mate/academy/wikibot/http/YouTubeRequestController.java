@@ -1,5 +1,10 @@
 package mate.academy.wikibot.http;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+GI
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -7,11 +12,6 @@ import mate.academy.wikibot.client.ClientHandler;
 import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.dto.YouTubeResponseDto;
 import mate.academy.wikibot.exception.MyException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
