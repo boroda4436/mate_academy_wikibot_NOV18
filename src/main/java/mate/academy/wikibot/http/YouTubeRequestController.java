@@ -1,7 +1,5 @@
 package mate.academy.wikibot.http;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -10,21 +8,20 @@ import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.dto.YouTubeResponseDto;
 import mate.academy.wikibot.exception.MyException;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class YouTubeRequestController {
     /**
      * this function does GET query and gets HttpResponse
-     *
      * @param requestDto
      * @return list of YouTubeResponseDto
      */
@@ -57,7 +54,6 @@ public class YouTubeRequestController {
 
     /**
      * this function deserialize json using Jackson library and Tree Model
-     *
      * @param data
      * @return list of YouTubeResponseDto
      */

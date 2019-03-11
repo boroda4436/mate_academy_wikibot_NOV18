@@ -11,7 +11,6 @@ public class ClientHandler {
 
     /**
      * Singleton static method that returns single  httpClient object
-     *
      * @return httpClient object
      */
     public static HttpClient getHttpClientInstance() {
