@@ -10,8 +10,9 @@ public class ClientHandler {
     }
 
     /**
-     * Singleton static method that returns single  httpClient object
-     * @return httpClient object
+     * Static method that returns single httpClient object.
+     *
+     * @return httpClient object.
      */
     public static HttpClient getHttpClientInstance() {
         if (httpClient == null) {

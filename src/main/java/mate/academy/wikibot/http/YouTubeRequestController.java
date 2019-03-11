@@ -21,9 +21,10 @@ import org.apache.http.util.EntityUtils;
 
 public class YouTubeRequestController {
     /**
-     * this function does GET query and gets HttpResponse
-     * @param requestDto
-     * @return list of YouTubeResponseDto
+     * This function does GET query and gets HttpResponse.
+     *
+     * @param requestDto - object of YouTubeRequestDto.
+     * @return list of YouTubeResponseDto.
      */
     public static List<YouTubeResponseDto> getListOfVideo(YouTubeRequestDto requestDto) {
         final String url = String.format("https://www.googleapis.com/youtube/v3/search?part=snippet"
@@ -53,9 +54,10 @@ public class YouTubeRequestController {
     }
 
     /**
-     * this function deserialize json using Jackson library and Tree Model
-     * @param data
-     * @return list of YouTubeResponseDto
+     * This function deserialize json using Jackson library and Tree Model.
+     *
+     * @param data - string format of JSON object.
+     * @return list of YouTubeResponseDto.
      */
     private static List<YouTubeResponseDto> deserializeJson(String data) {
         ObjectMapper objectMapper = new ObjectMapper();
