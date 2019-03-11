@@ -1,6 +1,8 @@
 package mate.academy.wikibot.http;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import mate.academy.wikibot.client.ClientHandler;
@@ -16,15 +18,17 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class YouTubeRequestController {
     /**
+     * this function does GET query and gets HttpResponse
+     *
      * @param requestDto
-     * @return
+     * @return list of YouTubeResponseDto
      */
     public static List<YouTubeResponseDto> getListOfVideo(YouTubeRequestDto requestDto) {
-        ObjectMapper objectMapper = new ObjectMapper();
         final String url = String.format("https://www.googleapis.com/youtube/v3/search?part=snippet"
                         + "&maxResults=%s"
                         + "&q=%s"
@@ -43,29 +47,43 @@ public class YouTubeRequestController {
             HttpResponse httpResponse = client.execute(get);
             HttpEntity httpEntity = httpResponse.getEntity();
             String data = EntityUtils.toString(httpEntity);
-            List<YouTubeResponseDto> videos = objectMapper.readValue(data,
-                    new TypeReference<ArrayList<YouTubeResponseDto>>() {
 
-                    });
 
-            return videos;
+            return deserializeJson(data);
         } catch (IOException e) {
             throw new MyException(e);
         }
     }
 
-    /*private static String getApiKey() {
-        FileInputStream fileInputStream;
-        Properties property = new Properties();
+    /**
+     * this function deserialize json using Jackson library and Tree Model
+     *
+     * @param data
+     * @return list of YouTubeResponseDto
+     */
+    private static List<YouTubeResponseDto> deserializeJson(String data) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<YouTubeResponseDto> responseDtos = new ArrayList<>();
 
         try {
-            fileInputStream = new FileInputStream("src/main/resources/youtube.properties");
-            property.load(fileInputStream);
-            String apiKey = property.getProperty("youtube.apikey");
+            JsonNode rootNode = objectMapper.readTree(data);
+            JsonNode items = rootNode.get("items");
+            Iterator<JsonNode> iterator = items.elements();
 
-            return apiKey;
+            while (iterator.hasNext()) {
+                JsonNode item = iterator.next();
+                String videoId = item.get("id").get("videoId").toString();
+                String title = item.get("snippet").get("title").toString();
+
+                YouTubeResponseDto responseDto = new YouTubeResponseDto();
+                responseDto.setVideoId(videoId);
+                responseDto.setTitle(title);
+                responseDtos.add(responseDto);
+            }
+
+            return responseDtos;
         } catch (IOException e) {
             throw new MyException(e);
         }
-    }*/
+    }
 }
