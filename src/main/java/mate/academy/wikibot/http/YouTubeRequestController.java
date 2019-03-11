@@ -1,12 +1,12 @@
 package mate.academy.wikibot.http;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import mate.academy.wikibot.client.ClientHandler;
 import mate.academy.wikibot.dto.YouTubeRequestDto;
