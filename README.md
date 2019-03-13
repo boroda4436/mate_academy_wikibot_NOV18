@@ -5,8 +5,9 @@
 * [Project structure](#structure)
 * [For user, how to start?](#user-start)
 * [For developer](#developer-start)
-* [License](#license)
 * [Statistic of code quality](#statistic)
+* [License](#license)
+* [Authors](#authors)
 
 # <a name="purpose"></a>Project purpose
 MAYouTubeBot is the App for searching video on YouTube using TelegramBot.
@@ -18,7 +19,7 @@ at your telegram chat!
 
 <hr>
 
-#<a name = "structure"></a>Project Structure
+# <a name="structure"></a>Project Structure
 * Java 8
 * SpringFramework 2.1.3 RELEASE
 * Maven 4.0.0
@@ -31,7 +32,7 @@ at your telegram chat!
 
 <hr>
 
-#<a name = "user-start"></a>For user. How to start?
+# <a name="user-start"></a>For user. How to start?
 
 Install Git
 Fork bchupika/mate_academy_wikibot_NOV18 branch into your personal GitHub account. 
@@ -57,7 +58,7 @@ Start project
 
 Point to http://localhost:8080 
 
-#<a name = "developer-start"></a>For developer
+# <a name="developer-start"></a>For developer
 
 After following the above steps (description for user ) you will have two remotes ‘bchupika’
 and ‘origin’. 
@@ -74,18 +75,37 @@ After you are done with your local changes push your current local branch to you
 
 git push origin <*name_of_local_branch*>
 
+![push origin](/images/push_origin_localBranch.jpg)
+
 And then create a pull request to bchupika/master.
+
+![pull request](/images/OpenPullRequest.jpg) If you push create pull request button and have such error
+![405 Not allowed](/images/NotAllowed.jpg)
+
+Go back and push compare across forks link:
+
+![compareAcrossForks](/images/CompareAcrossForks.jpg)
+
+And you can now create pull request by pushing green button:
+
+![pushButton](/images/pushButton.jpg)
+
+Add reviwers to your pull request.
 
 After the PR test completed successfully and your changes are reviewed ‘Rebase and Merge’ the pull request.
 
 If you have multiple commits and want to squash them into a single commit then either do it locally or click ‘Squash and merge’ when merging the PR.
 
-#<a name = "statistic"></a>Statistic of code quality
+# <a name="statistic"></a>Statistic of code quality
+
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/boroda4436/mate_academy_wikibot_NOV18.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/boroda4436/mate_academy_wikibot_NOV18/context:java)
 
-#<a name = license></a>License
+<hr>
+
+# <a name="license"></a>License
 
 ***Copyright (c) 2019 Mate Academy (NOV18)***
+
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
@@ -94,7 +114,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 <hr>
 
-#<a name = Authors></a>Authors
+# <a name="authors"></a>Authors
 * https://github.com/boroda4436
 * https://github.com/BondarenkoJek
 * https://github.com/Dinexpod
@@ -103,4 +123,3 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 * https://github.com/Orbit419
 * https://github.com/romaanankin
 * https://github.com/YatKat
-
