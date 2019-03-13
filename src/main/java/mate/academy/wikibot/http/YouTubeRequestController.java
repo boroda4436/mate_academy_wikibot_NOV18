@@ -2,11 +2,11 @@ package mate.academy.wikibot.http;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
+
+import java.io.IOException;
+import java.util.List;
 
 import mate.academy.wikibot.client.ClientHandler;
 import mate.academy.wikibot.dto.YouTubeRequestDto;
