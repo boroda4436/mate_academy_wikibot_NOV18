@@ -1,16 +1,15 @@
 package mate.academy.wikibot.http;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
+import com.google.api.services.youtube.model.SearchListResponse;
+import com.google.api.services.youtube.model.SearchResult;
 
 import mate.academy.wikibot.client.ClientHandler;
 import mate.academy.wikibot.dto.YouTubeRequestDto;
-import mate.academy.wikibot.dto.YouTubeResponseDto;
 import mate.academy.wikibot.exception.MyException;
 
 import org.apache.http.HttpEntity;
@@ -24,9 +23,10 @@ public class YouTubeRequestController {
      * This function does GET query and gets HttpResponse.
      *
      * @param requestDto - object of YouTubeRequestDto.
-     * @return list of YouTubeResponseDto.
+     * @return list of SearchResult.
      */
-    public static List<YouTubeResponseDto> getListOfVideo(YouTubeRequestDto requestDto) {
+    public static List<SearchResult> getListOfVideo(YouTubeRequestDto requestDto) {
+        ObjectMapper objectMapper = new ObjectMapper();
         final String url = String.format("https://www.googleapis.com/youtube/v3/search?part=snippet"
                         + "&maxResults=%s"
                         + "&q=%s"
@@ -40,46 +40,14 @@ public class YouTubeRequestController {
 
         try {
             HttpClient client = ClientHandler.getHttpClientInstance();
-            StringBuilder stringBuilder = new StringBuilder(url);
-            HttpGet get = new HttpGet(stringBuilder.toString());
+            HttpGet get = new HttpGet(url);
             HttpResponse httpResponse = client.execute(get);
             HttpEntity httpEntity = httpResponse.getEntity();
             String data = EntityUtils.toString(httpEntity);
+            SearchListResponse youtubeVideoListResponse =
+                    objectMapper.readValue(data, SearchListResponse.class);
 
-
-            return deserializeJson(data);
-        } catch (IOException e) {
-            throw new MyException(e);
-        }
-    }
-
-    /**
-     * This function deserialize json using Jackson library and Tree Model.
-     *
-     * @param data - string format of JSON object.
-     * @return list of YouTubeResponseDto.
-     */
-    private static List<YouTubeResponseDto> deserializeJson(String data) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<YouTubeResponseDto> responseDtos = new ArrayList<>();
-
-        try {
-            JsonNode rootNode = objectMapper.readTree(data);
-            JsonNode items = rootNode.get("items");
-            Iterator<JsonNode> iterator = items.elements();
-
-            while (iterator.hasNext()) {
-                JsonNode item = iterator.next();
-                String videoId = item.get("id").get("videoId").toString();
-                String title = item.get("snippet").get("title").toString();
-
-                YouTubeResponseDto responseDto = new YouTubeResponseDto();
-                responseDto.setVideoId(videoId);
-                responseDto.setTitle(title);
-                responseDtos.add(responseDto);
-            }
-
-            return responseDtos;
+            return youtubeVideoListResponse.getItems();
         } catch (IOException e) {
             throw new MyException(e);
         }
