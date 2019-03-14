@@ -3,7 +3,7 @@ package mate.academy.wikibot.dto;
 import lombok.Data;
 
 @Data
-public class YouTubeRequestDto  {
+public class YouTubeRequestDto {
     /**
      * Specifies the max result of returned video.
      */
