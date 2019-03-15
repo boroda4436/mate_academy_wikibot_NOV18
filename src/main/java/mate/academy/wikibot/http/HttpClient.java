@@ -2,6 +2,8 @@ package mate.academy.wikibot.http;
 
 import mate.academy.wikibot.exception.MyException;
 
+import java.io.IOException;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -9,7 +11,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 
 @Component
 public class HttpClient {
