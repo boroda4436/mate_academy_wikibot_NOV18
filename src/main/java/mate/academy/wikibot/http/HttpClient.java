@@ -1,8 +1,8 @@
 package mate.academy.wikibot.http;
 
-import mate.academy.wikibot.exception.MyException;
-
 import java.io.IOException;
+
+import mate.academy.wikibot.exception.MyException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
