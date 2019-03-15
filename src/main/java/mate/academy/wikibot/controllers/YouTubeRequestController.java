@@ -1,18 +1,17 @@
 package mate.academy.wikibot.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
-
-import java.io.IOException;
-import java.util.List;
 
 import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.exception.MyException;
 import mate.academy.wikibot.http.HttpClient;
 
 import org.springframework.stereotype.Controller;
+
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class YouTubeRequestController {
