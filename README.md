@@ -1,11 +1,14 @@
 # MAYouTubeBot
 ![MAYouTubeBot](/images/youtube_telegram.png)
+
+
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/boroda4436/mate_academy_wikibot_NOV18.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/boroda4436/mate_academy_wikibot_NOV18/context:java)
+
 # Table of Contents
 * [Project purpose](#purpose)
 * [Project structure](#structure)
 * [For user, how to start?](#user-start)
 * [For developer](#developer-start)
-* [Statistic of code quality](#statistic)
 * [License](#license)
 * [Authors](#authors)
 
@@ -16,64 +19,55 @@ You can use MAYouTubeBot by going to Telegram,
 finding it by name, typing 2-3 words of interest and here it is! 
 MAYouTubeBot would give you the most relative video to you search. Just there,
 at your telegram chat!
-
 <hr>
 
 # <a name="structure"></a>Project Structure
 * Java 8
-* SpringFramework 2.1.3 RELEASE
+* SpringBoot 2.1.3 RELEASE
 * Maven 4.0.0
-* MavenCheckstyle 2.17
-* CheckstyleVersion 8.18
-* CircleCI for checkstyle and build check
-* Travis CI for checkstyle and build check
+* MavenCheckstylePlugin 2.17
+* com.puppycrawl.tools.Checkstyle 8.18
+* CircleCI for checkstyle tests and build check
+* Travis CI for checkstyle tests and build check
+* GoogleCheckstyle
 * HttpClient 4.5.6
-* Jackson
-
+* Jackson 2.9.7
 <hr>
 
 # <a name="user-start"></a>For user. How to start?
-
-Install Git
-Fork bchupika/mate_academy_wikibot_NOV18 branch into your personal GitHub account. 
-![screenshotFor forking](/images/Fork_2.jpg)
-<hr>
-Clone the fork (from your personal GitHub) by next command:
-
-git clone https://github.com/<*your_user_name*>/mate_academy_wikibot_NOV18
-
-or
-
-git clone git@github.com:<*your_user_name*>/mate_academy_wikibot_NOV18.git
-
-Add bchupika/mate_academy_wikibot_NOV18 as another remote.
-	git remote add bchupika https://github.com/boroda4436/mate_academy_wikibot_NOV18.git
-Fetch latest from bchupika/mate_academy_wikibot_NOV18
-	git fetch bchupika 
-Create a local development branch out of bchupika/master
-	git checkout -b <*a_branch_name*> bchupika/master
-Build your project by: 
-	mvn clean install
-Start project
-
-Point to http://localhost:8080 
+*The description will be implemented later after deployment.*
+ 
 
 # <a name="developer-start"></a>For developer
+* Install Git
+* Fork bchupika/mate_academy_wikibot_NOV18 branch into your personal GitHub account. 
+![screenshotFor forking](/images/Fork_2.jpg)
 
-After following the above steps (description for user ) you will have two remotes ‘bchupika’
-and ‘origin’. 
-You may check it like this: 
-git remote -vv
+* Clone the fork (from your personal GitHub) by next command:
+  * git clone https://github.com/<*your_user_name*>/mate_academy_wikibot_NOV18
+or
+  * git clone git@github.com:<*your_user_name*>/mate_academy_wikibot_NOV18.git
 
-bchupika        https://github.com/boroda4436/mate_academy_wikibot_NOV18.git (fetch)
-bchupika        https://github.com/boroda4436/mate_academy_wikibot_NOV18.git (push)
-origin  https://github.com/<*your_github_user_name*>/mate_academy_wikibot_NOV18.git (fetch)
-origin  https://github.com/<*your_github_user_name*>/mate_academy_wikibot_NOV18.git (push)
+* Add bchupika/mate_academy_wikibot_NOV18 as another remote by:
+  * git remote add bchupika https://github.com/boroda4436/mate_academy_wikibot_NOV18.git
+* Fetch latest from bchupika/mate_academy_wikibot_NOV18 by:
+  * git fetch bchupika 
+* Create a local development branch out of bchupika/master by:
+  * git checkout -b <*a_branch_name*> bchupika/master
+* Build your project by: 
+  * mvn clean install
+Start project. Point to http://localhost:8080
 
+After following the above steps you will have two remotes ‘bchupika’ and ‘origin’. You may check it like this: 
+  * git remote -vv
 
-After you are done with your local changes push your current local branch to your origin
+bchupika https://github.com/boroda4436/mate_academy_wikibot_NOV18.git (fetch)
+bchupika https://github.com/boroda4436/mate_academy_wikibot_NOV18.git (push)
+origin https://github.com/<*your_github_user_name*>/mate_academy_wikibot_NOV18.git (fetch)
+origin https://github.com/<*your_github_user_name*>/mate_academy_wikibot_NOV18.git (push)
 
-git push origin <*name_of_local_branch*>
+After you are done with your local changes push your current local branch to your origin by:
+  * git push origin <*name_of_local_branch*>
 
 ![push origin](/images/push_origin_localBranch.jpg)
 
@@ -90,15 +84,11 @@ And you can now create pull request by pushing green button:
 
 ![pushButton](/images/pushButton.jpg)
 
-Add reviwers to your pull request.
+Add reviewers to your pull request.
 
 After the PR test completed successfully and your changes are reviewed ‘Rebase and Merge’ the pull request.
 
 If you have multiple commits and want to squash them into a single commit then either do it locally or click ‘Squash and merge’ when merging the PR.
-
-# <a name="statistic"></a>Statistic of code quality
-
-[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/boroda4436/mate_academy_wikibot_NOV18.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/boroda4436/mate_academy_wikibot_NOV18/context:java)
 
 <hr>
 
