@@ -11,19 +11,14 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class HttpClient {
-
-    private HttpClient() {
-    }
-
     /**
-     * Static method that does get query and gets string format of JSON.
+     * This function does get query and gets string format of JSON.
      *
      * @return string format of JSON.
      */
-    public static String doGet(String url) {
+    public String doGet(String url) {
         try {
             org.apache.http.client.HttpClient client =
                     HttpClientBuilder.create().build();

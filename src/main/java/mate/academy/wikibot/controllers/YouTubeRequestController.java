@@ -11,17 +11,21 @@ import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.exception.MyException;
 import mate.academy.wikibot.http.HttpClient;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class YouTubeRequestController {
+    @Autowired
+    private HttpClient httpClient;
+
     /**
      * This function does GET query and gets list of SearchResult.
      *
      * @param requestDto - object of YouTubeRequestDto.
      * @return list of SearchResult.
      */
-    public static List<SearchResult> getListOfVideo(YouTubeRequestDto requestDto) {
+    public List<SearchResult> getListOfVideo(YouTubeRequestDto requestDto) {
         ObjectMapper objectMapper = new ObjectMapper();
         final String url = String.format("https://www.googleapis.com/youtube/v3/search?part=snippet"
                         + "&maxResults=%s"
@@ -35,7 +39,7 @@ public class YouTubeRequestController {
                 requestDto.getApiKey());
 
         try {
-            String data = HttpClient.doGet(url);
+            String data = httpClient.doGet(url);
             SearchListResponse youtubeVideoListResponse =
                     objectMapper.readValue(data, SearchListResponse.class);
 
