@@ -11,7 +11,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 @SpringBootApplication
 public class WikibotApplication implements CommandLineRunner {
-
     @Autowired
     private TelegramLongPollingBot bot;
 
