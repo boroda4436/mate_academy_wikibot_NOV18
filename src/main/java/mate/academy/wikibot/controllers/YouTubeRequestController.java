@@ -1,31 +1,31 @@
-package mate.academy.wikibot.http;
+package mate.academy.wikibot.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
 
 import java.io.IOException;
 import java.util.List;
 
-import mate.academy.wikibot.client.ClientHandler;
 import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.exception.MyException;
+import mate.academy.wikibot.http.HttpClient;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class YouTubeRequestController {
+    @Autowired
+    private HttpClient httpClient;
+
     /**
-     * This function does GET query and gets HttpResponse.
+     * This function does GET query and gets list of SearchResult.
      *
      * @param requestDto - object of YouTubeRequestDto.
      * @return list of SearchResult.
      */
-    public static List<SearchResult> getListOfVideo(YouTubeRequestDto requestDto) {
+    public List<SearchResult> getListOfVideo(YouTubeRequestDto requestDto) {
         ObjectMapper objectMapper = new ObjectMapper();
         final String url = String.format("https://www.googleapis.com/youtube/v3/search?part=snippet"
                         + "&maxResults=%s"
@@ -39,11 +39,7 @@ public class YouTubeRequestController {
                 requestDto.getApiKey());
 
         try {
-            HttpClient client = ClientHandler.getHttpClientInstance();
-            HttpGet get = new HttpGet(url);
-            HttpResponse httpResponse = client.execute(get);
-            HttpEntity httpEntity = httpResponse.getEntity();
-            String data = EntityUtils.toString(httpEntity);
+            String data = httpClient.doGet(url);
             SearchListResponse youtubeVideoListResponse =
                     objectMapper.readValue(data, SearchListResponse.class);
 
