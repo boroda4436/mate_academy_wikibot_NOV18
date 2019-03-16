@@ -1,5 +1,8 @@
 package mate.academy.wikibot.bot;
 
+import mate.academy.wikibot.controllers.YouTubeRequestController;
+import mate.academy.wikibot.dto.YouTubeRequestDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -13,6 +16,12 @@ public class Bot extends TelegramLongPollingBot {
     private String botUsername;
     @Value("${bot.token}")
     private String botToken;
+    @Value("${youtube.Api.Key}")
+    private String youtubeApiKey;
+
+    @Autowired
+    private YouTubeRequestController youTubeRequestController;
+    private YouTubeRequestDto youTubeRequestDto;
 
     @Override
     public void onUpdateReceived(Update update) {
