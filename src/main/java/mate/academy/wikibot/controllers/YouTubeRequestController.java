@@ -2,7 +2,9 @@ package mate.academy.wikibot.controllers;
 
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
@@ -17,6 +19,9 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class YouTubeRequestController {
+    private HttpTransport in = new NetHttpTransport();
+    private JsonFactory jsonFactory = new JacksonFactory();
+
     /**
      * This function does GET query and gets list of SearchResult.
      *
@@ -24,7 +29,7 @@ public class YouTubeRequestController {
      * @return list of SearchResult.
      */
     public List<SearchResult> getListOfVideo(YouTubeRequestDto requestDto) throws IOException {
-        YouTube youTube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
+        YouTube youTube = new YouTube.Builder(in, jsonFactory, new HttpRequestInitializer() {
             @Override
             public void initialize(HttpRequest httpRequest) throws IOException {
 

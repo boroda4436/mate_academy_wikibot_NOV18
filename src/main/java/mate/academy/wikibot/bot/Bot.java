@@ -1,6 +1,8 @@
 package mate.academy.wikibot.bot;
 
 import com.google.api.services.youtube.model.SearchResult;
+import java.io.IOException;
+import java.util.List;
 import mate.academy.wikibot.controllers.YouTubeRequestController;
 import mate.academy.wikibot.dto.YouTubeRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,6 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-
-import java.util.List;
-import java.io.IOException;
-
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
@@ -28,9 +26,9 @@ public class Bot extends TelegramLongPollingBot {
     private final YouTubeRequestDto youTubeRequestDto;
 
     @Autowired
-    public Bot(YouTubeRequestController youTubeRequestController, YouTubeRequestDto youTubeRequestDto) {
-        this.youTubeRequestController = youTubeRequestController;
-        this.youTubeRequestDto = youTubeRequestDto;
+    public Bot(YouTubeRequestController controller, YouTubeRequestDto requestDto) {
+        this.youTubeRequestController = controller;
+        this.youTubeRequestDto = requestDto;
     }
 
     @Override
