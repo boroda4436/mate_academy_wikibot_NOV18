@@ -32,7 +32,6 @@ public class YouTubeRequestController {
         YouTube youTube = new YouTube.Builder(in, jsonFactory, new HttpRequestInitializer() {
             @Override
             public void initialize(HttpRequest httpRequest) throws IOException {
-
             }
         }).setApplicationName("app").build();
 
