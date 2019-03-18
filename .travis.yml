@@ -12,13 +12,13 @@ cache:
   - $HOME/.m2
 
 deploy:
-- provider: heroku
+provider: heroku
     api_key:
       secure: "1c65c462-4123-46e3-b689-a16fb8f6e1bd"
     on:
       branch: deploy
 
-  - provider: heroku
+  provider: heroku
     api_key:
       secure: "1c65c462-4123-46e3-b689-a16fb8f6e1bd"
     on:
