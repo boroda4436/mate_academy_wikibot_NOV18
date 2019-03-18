@@ -1,5 +1,9 @@
 package mate.academy.wikibot.bot;
 
+import com.google.api.client.util.DateTime;
+import mate.academy.wikibot.logs.Log;
+import mate.academy.wikibot.logs.LogRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.google.api.services.youtube.model.SearchResult;
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +23,8 @@ public class Bot extends TelegramLongPollingBot {
     private String botUsername;
     @Value("${bot.token}")
     private String botToken;
+    @Autowired
+    private LogRepository logRepository;
     @Value("${youtube.Api.Key}")
     private String youtubeApiKey;
 
@@ -34,6 +40,8 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         String message = update.getMessage().getText();
+        log(update);
+        sendMsg(update.getMessage().getChatId().toString(), message);
         youTubeRequestDto.setApiKey(youtubeApiKey);
         youTubeRequestDto.setMaxResults(10);
         youTubeRequestDto.setQuery(message);
@@ -75,5 +83,15 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+    }
+
+    private void log(Update update) {
+        Log log = Log.builder()
+                .message(update.getMessage().getText())
+                .chatId(update.getMessage().getChatId())
+                .date(new DateTime(update.getMessage().getDate() * 1000L))
+                .build();
+
+        logRepository.save(log);
     }
 }
