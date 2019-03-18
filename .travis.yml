@@ -10,3 +10,9 @@ script:
 cache:
   directories:
   - $HOME/.m2
+
+deploy:
+  provider: heroku
+  app: "youtube-t-bot"
+  api_key:
+    secure: "1c65c462-4123-46e3-b689-a16fb8f6e1bd"
