@@ -16,4 +16,5 @@ deploy:
   api_key:
     secure: "1c65c462-4123-46e3-b689-a16fb8f6e1bd"
     on:
+    tags: true
     all_branches: true
