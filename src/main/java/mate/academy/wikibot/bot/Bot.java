@@ -1,5 +1,9 @@
 package mate.academy.wikibot.bot;
 
+import com.google.api.client.util.DateTime;
+import mate.academy.wikibot.logs.Log;
+import mate.academy.wikibot.logs.LogRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -13,10 +17,13 @@ public class Bot extends TelegramLongPollingBot {
     private String botUsername;
     @Value("${bot.token}")
     private String botToken;
+    @Autowired
+    private LogRepository logRepository;
 
     @Override
     public void onUpdateReceived(Update update) {
         String message = update.getMessage().getText();
+        log(update);
         sendMsg(update.getMessage().getChatId().toString(), message);
     }
 
@@ -43,5 +50,15 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+    }
+
+    private void log(Update update) {
+        Log log = Log.builder()
+                .message(update.getMessage().getText())
+                .chatId(update.getMessage().getChatId())
+                .date(new DateTime(update.getMessage().getDate() * 1000L))
+                .build();
+
+        logRepository.save(log);
     }
 }
