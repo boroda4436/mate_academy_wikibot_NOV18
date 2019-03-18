@@ -26,7 +26,7 @@ public class YouTubeRequestController {
      * This function does GET query and gets list of SearchResult.
      *
      * @param requestDto - object of YouTubeRequestDto.
-     * @return list of SearchResult.
+     * @return list of video SearchResult.
      */
     public List<SearchResult> getListOfVideo(YouTubeRequestDto requestDto) throws IOException {
         YouTube youTube = new YouTube.Builder(in, jsonFactory, new HttpRequestInitializer() {
