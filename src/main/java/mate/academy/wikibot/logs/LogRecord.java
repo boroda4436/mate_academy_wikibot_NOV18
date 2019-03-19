@@ -14,12 +14,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "records")
+@Table(name = "logRecords")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Record {
+public class LogRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
