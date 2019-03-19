@@ -1,8 +1,8 @@
 package mate.academy.wikibot.bot;
 
 import com.google.api.client.util.DateTime;
-import mate.academy.wikibot.logs.LogRecordRepository;
 import mate.academy.wikibot.logs.LogRecord;
+import mate.academy.wikibot.logs.LogRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
