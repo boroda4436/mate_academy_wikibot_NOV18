@@ -1,8 +1,8 @@
 package mate.academy.wikibot.bot;
 
 import com.google.api.client.util.DateTime;
-import mate.academy.wikibot.logs.LogRepository;
-import mate.academy.wikibot.logs.Record;
+import mate.academy.wikibot.logs.LogRecordRepository;
+import mate.academy.wikibot.logs.LogRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.google.api.services.youtube.model.SearchResult;
 import java.io.IOException;
@@ -24,6 +24,7 @@ public class Bot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String botToken;
     @Autowired
+    private LogRecordRepository logRecordRepository;
     private LogRepository logRepository;
     @Value("${youtube.Api.Key}")
     private String youtubeApiKey;
@@ -86,12 +87,12 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private void log(Update update) {
-        Record record = Record.builder()
+        LogRecord logRecord = LogRecord.builder()
                 .message(update.getMessage().getText())
                 .chatId(update.getMessage().getChatId())
                 .date(new DateTime(update.getMessage().getDate() * 1000L))
                 .build();
 
-        logRepository.save(record);
+        logRecordRepository.save(logRecord);
     }
 }
