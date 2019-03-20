@@ -2,6 +2,8 @@ package mate.academy.wikibot.bot;
 
 import com.google.api.client.util.DateTime;
 import com.google.api.services.youtube.model.SearchResult;
+import java.io.IOException;
+import java.util.List;
 import mate.academy.wikibot.controllers.YouTubeRequestController;
 import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.logs.LogRecord;
@@ -14,27 +16,27 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.IOException;
-import java.util.List;
-
 @Component
 public class Bot extends TelegramLongPollingBot {
     @Value("${bot.username}")
     private String botUsername;
     @Value("${bot.token}")
     private String botToken;
-    @Autowired
-    private LogRecordRepository logRecordRepository;
     @Value("${youtube.Api.Key}")
     private String youtubeApiKey;
 
     private final YouTubeRequestController youTubeRequestController;
     private final YouTubeRequestDto youTubeRequestDto;
+    private final LogRecordRepository logRecordRepository;
 
+    /**
+     * This Bot sends video from youTube.
+     */
     @Autowired
-    public Bot(YouTubeRequestController controller, YouTubeRequestDto requestDto) {
-        this.youTubeRequestController = controller;
-        this.youTubeRequestDto = requestDto;
+    public Bot(YouTubeRequestController contr, YouTubeRequestDto req, LogRecordRepository log) {
+        this.youTubeRequestController = contr;
+        this.youTubeRequestDto = req;
+        this.logRecordRepository = log;
     }
 
     @Override
