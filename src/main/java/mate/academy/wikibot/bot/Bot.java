@@ -1,14 +1,11 @@
 package mate.academy.wikibot.bot;
 
 import com.google.api.client.util.DateTime;
-import mate.academy.wikibot.logs.LogRecord;
-import mate.academy.wikibot.logs.LogRecordRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.google.api.services.youtube.model.SearchResult;
-import java.io.IOException;
-import java.util.List;
 import mate.academy.wikibot.controllers.YouTubeRequestController;
 import mate.academy.wikibot.dto.YouTubeRequestDto;
+import mate.academy.wikibot.logs.LogRecord;
+import mate.academy.wikibot.logs.LogRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -16,6 +13,9 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.io.IOException;
+import java.util.List;
 
 @Component
 public class Bot extends TelegramLongPollingBot {
@@ -25,7 +25,6 @@ public class Bot extends TelegramLongPollingBot {
     private String botToken;
     @Autowired
     private LogRecordRepository logRecordRepository;
-    private LogRepository logRepository;
     @Value("${youtube.Api.Key}")
     private String youtubeApiKey;
 
