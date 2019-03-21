@@ -1,8 +1,10 @@
 package mate.academy.wikibot.bot;
 
 import com.google.api.client.util.DateTime;
+import mate.academy.wikibot.dto.SendMailResponse;
 import mate.academy.wikibot.logs.LogRecord;
 import mate.academy.wikibot.logs.LogRecordRepository;
+import mate.academy.wikibot.service.MailScheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -17,13 +19,25 @@ public class Bot extends TelegramLongPollingBot {
     private String botUsername;
     @Value("${bot.token}")
     private String botToken;
+
     @Autowired
     private LogRecordRepository logRecordRepository;
+    @Autowired
+    private MailScheduler scheduler;
 
     @Override
     public void onUpdateReceived(Update update) {
         String message = update.getMessage().getText();
         log(update);
+        //TODO: for testing mailsender service only
+        try {
+            message += scheduler.sendMessage();
+        } catch (Exception e) {
+            SendMailResponse response = new SendMailResponse();
+            response.setStatus(SendMailResponse.Status.ERROR);
+            System.out.println(response.getErrors());
+        }
+        //TODO: end
         sendMsg(update.getMessage().getChatId().toString(), message);
     }
 
