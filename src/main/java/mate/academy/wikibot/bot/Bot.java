@@ -9,7 +9,6 @@ import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.logs.LogRecord;
 import mate.academy.wikibot.logs.LogRecordRepository;
 import mate.academy.wikibot.service.MailScheduler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -17,6 +16,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+/**
+ * Telegram bot that send requests and take responses to/from telegram.
+ */
 @Component
 public class Bot extends TelegramLongPollingBot {
     @Value("${bot.username}")
@@ -34,7 +36,6 @@ public class Bot extends TelegramLongPollingBot {
     /**
      * This Bot sends video from youTube.
      */
-    @Autowired
     public Bot(YouTubeRequestController contr, YouTubeRequestDto req,
                LogRecordRepository log, MailScheduler mailScheduler) {
         this.youTubeRequestController = contr;
@@ -45,10 +46,6 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        //TODO: just for test
-        mailScheduler.sendMessage();
-        //TODO END;
-
         String message = update.getMessage().getText();
         log(update);
         sendMsg(update.getMessage().getChatId().toString(), message);

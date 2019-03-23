@@ -4,6 +4,9 @@ import java.util.List;
 
 import lombok.Data;
 
+/**
+ * Class is dto for response.
+ */
 @Data
 public class SendMailResponse {
     private Status status;
