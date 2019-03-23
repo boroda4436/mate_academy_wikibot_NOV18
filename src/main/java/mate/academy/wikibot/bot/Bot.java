@@ -1,6 +1,11 @@
 package mate.academy.wikibot.bot;
 
 import com.google.api.client.util.DateTime;
+import com.google.api.services.youtube.model.SearchResult;
+import java.io.IOException;
+import java.util.List;
+import mate.academy.wikibot.controllers.YouTubeRequestController;
+import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.logs.LogRecord;
 import mate.academy.wikibot.logs.LogRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +22,44 @@ public class Bot extends TelegramLongPollingBot {
     private String botUsername;
     @Value("${bot.token}")
     private String botToken;
+    @Value("${youtube.Api.Key}")
+    private String youtubeApiKey;
+
+    private final YouTubeRequestController youTubeRequestController;
+    private final YouTubeRequestDto youTubeRequestDto;
+    private final LogRecordRepository logRecordRepository;
+
+    /**
+     * This Bot sends video from youTube.
+     */
     @Autowired
-    private LogRecordRepository logRecordRepository;
+    public Bot(YouTubeRequestController contr, YouTubeRequestDto req, LogRecordRepository log) {
+        this.youTubeRequestController = contr;
+        this.youTubeRequestDto = req;
+        this.logRecordRepository = log;
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
         String message = update.getMessage().getText();
         log(update);
         sendMsg(update.getMessage().getChatId().toString(), message);
+        youTubeRequestDto.setApiKey(youtubeApiKey);
+        youTubeRequestDto.setMaxResults(10);
+        youTubeRequestDto.setQuery(message);
+        youTubeRequestDto.setTopicId(message);
+        List<SearchResult> listOfVideo = null;
+        try {
+            listOfVideo = youTubeRequestController.getListOfVideo(youTubeRequestDto);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (listOfVideo != null) {
+            for (SearchResult searchResult : listOfVideo) {
+                sendMsg(update.getMessage().getChatId().toString(), String.format(
+                        "https://www.youtube.com/watch?v=%s",searchResult.getId().getVideoId()));
+            }
+        }
     }
 
     @Override
