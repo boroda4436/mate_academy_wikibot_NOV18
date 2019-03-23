@@ -13,6 +13,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+/**
+ * Telegram bot that send requests and take responses to/from telegram.
+ */
 @Component
 public class Bot extends TelegramLongPollingBot {
     @Value("${bot.username}")

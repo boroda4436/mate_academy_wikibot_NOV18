@@ -1,7 +1,9 @@
 package mate.academy.wikibot.http;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import java.io.IOException;
+
 import mate.academy.wikibot.dto.SendMailRequest;
 import mate.academy.wikibot.exception.MyException;
 import org.apache.http.HttpEntity;
@@ -14,8 +16,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
+/**
+ * Class is responsible for making HTTP requests.
+ */
 @Component
 public class HttpClient {
     /**
@@ -38,19 +41,23 @@ public class HttpClient {
         }
     }
 
+    /**
+     * This function does POST query and gets string format of JSON.
+     *
+     * @param url             for sending requests.
+     * @param sendMailRequest dto that describe request.
+     * @return String.
+     */
     //TODO: for testing mailsender service only
     public String doPost(String url, SendMailRequest sendMailRequest) {
         try {
             org.apache.http.client.HttpClient client =
                     HttpClientBuilder.create().build();
             ObjectMapper mapper = new ObjectMapper();
-            ObjectNode node = mapper.createObjectNode();
-            node.put("title", sendMailRequest.getTitle());
-            node.put("email", sendMailRequest.getEmail());
-            node.put("message", sendMailRequest.getMessage());
-            String JSON_STRING = node.toString();
+            String jsonFormatOfMailRequest = mapper.writeValueAsString(sendMailRequest);
             HttpPost post = new HttpPost(url);
-            post.setEntity(new StringEntity(JSON_STRING, ContentType.APPLICATION_JSON));
+            post.setEntity(new StringEntity(jsonFormatOfMailRequest,
+                    ContentType.APPLICATION_JSON));
             HttpResponse httpResponse = client.execute(post);
             HttpEntity httpEntity = httpResponse.getEntity();
             return EntityUtils.toString(httpEntity);
