@@ -1,11 +1,14 @@
 package mate.academy.wikibot.bot;
 
 import com.google.api.client.util.DateTime;
-import mate.academy.wikibot.dto.SendMailResponse;
+import com.google.api.services.youtube.model.SearchResult;
+import java.io.IOException;
+import java.util.List;
+import mate.academy.wikibot.controllers.YouTubeRequestController;
+import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.logs.LogRecord;
 import mate.academy.wikibot.logs.LogRecordRepository;
 import mate.academy.wikibot.service.MailScheduler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -22,26 +25,46 @@ public class Bot extends TelegramLongPollingBot {
     private String botUsername;
     @Value("${bot.token}")
     private String botToken;
+    @Value("${youtube.Api.Key}")
+    private String youtubeApiKey;
 
-    @Autowired
-    private LogRecordRepository logRecordRepository;
-    @Autowired
-    private MailScheduler scheduler;
+    private final YouTubeRequestController youTubeRequestController;
+    private final YouTubeRequestDto youTubeRequestDto;
+    private final LogRecordRepository logRecordRepository;
+    private final MailScheduler mailScheduler;
+
+    /**
+     * This Bot sends video from youTube.
+     */
+    public Bot(YouTubeRequestController contr, YouTubeRequestDto req,
+               LogRecordRepository log, MailScheduler mailScheduler) {
+        this.youTubeRequestController = contr;
+        this.youTubeRequestDto = req;
+        this.logRecordRepository = log;
+        this.mailScheduler = mailScheduler;
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
         String message = update.getMessage().getText();
         log(update);
-        //TODO: for testing mailsender service only
-        try {
-            message += scheduler.sendMessage();
-        } catch (Exception e) {
-            SendMailResponse response = new SendMailResponse();
-            response.setStatus(SendMailResponse.Status.ERROR);
-            System.out.println(response.getErrors());
-        }
-        //TODO: end
         sendMsg(update.getMessage().getChatId().toString(), message);
+        youTubeRequestDto.setApiKey(youtubeApiKey);
+        youTubeRequestDto.setMaxResults(10);
+        youTubeRequestDto.setQuery(message);
+        youTubeRequestDto.setTopicId(message);
+        List<SearchResult> listOfVideo = null;
+        try {
+            listOfVideo = youTubeRequestController.getListOfVideo(youTubeRequestDto);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (listOfVideo != null) {
+            for (SearchResult searchResult : listOfVideo) {
+                sendMsg(update.getMessage().getChatId().toString(), String.format(
+                        "https://www.youtube.com/watch?v=%s",searchResult.getId().getVideoId()));
+            }
+        }
     }
 
     @Override

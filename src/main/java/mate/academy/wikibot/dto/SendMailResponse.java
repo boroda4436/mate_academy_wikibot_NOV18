@@ -1,6 +1,7 @@
 package mate.academy.wikibot.dto;
 
 import java.util.List;
+
 import lombok.Data;
 
 /**

@@ -5,25 +5,24 @@ import mate.academy.wikibot.http.HttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * Class is responsible for sending message.
- */
 @Component
 public class MailScheduler {
+    private final HttpClient httpClient;
+
     @Autowired
-    private HttpClient httpClient;
+    public MailScheduler(HttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
 
     /**
-     * Method initialize MailRequest and send message.
-     *
-     * @return String with Response.
+     * Send message. Please IMPLEMENT: add scheduler every week
      */
-    public String sendMessage() {
+    public void sendMessage() {
         SendMailRequest sendMailRequest = new SendMailRequest();
-        sendMailRequest.setEmail("yat8kat@gmail.com");
+        sendMailRequest.setSendTo("<add email here>");
         sendMailRequest.setTitle("Bot statistic");
-        sendMailRequest.setMessage("Hello World Again and Again");
-        String data1 = httpClient.doPost("http://localhost:8081/mail/send", sendMailRequest);
-        return data1;
+        sendMailRequest.setMessage("Hello world");
+
+        httpClient.doPost("http://localhost:8081/mail/send", sendMailRequest);
     }
 }
