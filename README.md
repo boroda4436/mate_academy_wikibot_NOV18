@@ -32,6 +32,7 @@ at your telegram chat!
 * GoogleCheckstyle
 * HttpClient 4.5.6
 * Jackson 2.9.7
+* YouTube Java API v3
 <hr>
 
 # <a name="user-start"></a>For user. How to start?
@@ -39,6 +40,29 @@ at your telegram chat!
  
 
 # <a name="developer-start"></a>For developer
+* Create a new telegram bot.
+![screenshotFor TelegramBot](/images/telegramStart.PNG)
+  Use the /newbot command in you Telegram client to create a new bot. The BotFather will ask you for a name and username, then generate an authorization token for your new bot.
+  
+  The name of your bot is displayed in contact details and elsewhere.
+  
+  The Username is a short name, to be used in mentions and telegram.me links. Usernames are 5-32 characters long and are case insensitive, but may only include Latin characters, numbers, and underscores. Your bot's username must end in ‘bot’, e.g. ‘tetris_bot’ or ‘TetrisBot’.
+  
+  The token is a string along the lines of 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw that is required to authorize the bot and send requests to the Bot API. Keep your token secure and store it safely, it can be used by anyone to control your bot. 
+* Configure YouTube API v3 and obtain an API key.
+1) Go to https://developers.google.com/ and log in or create an account, if necessary.
+2) After logging in go to this link https://console.developers.google.com/project and click on the blue CREATE PROJECT button as depicted in the photo below. Wait a moment as google prepares your project.
+![screenshotFor youtubeAPI](/images/APIimg.png)
+
+3) Fill in whatever Project Name you want.
+![screenshotFor youtubeAPIproject](/images/APIprojectName.png)
+
+4) Then click GoogleAPIs link in the top left corner and then click the link option called “YouTube Data API.” It’s under YouTube API’s. You can see it highlighted in the photo below, bottom right.
+![screenshotFor youtubeAPIproject](/images/APIchooseyutube.png)
+
+5) Get your API key from credentials directory
+![screenshotFor youtubeAPIproject](/images/APIcredentials.png)
+
 * Install Git
 * Fork bchupika/mate_academy_wikibot_NOV18 branch into your personal GitHub account. 
 ![screenshotFor forking](/images/Fork_2.jpg)
