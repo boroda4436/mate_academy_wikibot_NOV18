@@ -8,7 +8,6 @@ import mate.academy.wikibot.controllers.YouTubeRequestController;
 import mate.academy.wikibot.dto.YouTubeRequestDto;
 import mate.academy.wikibot.logs.LogRecord;
 import mate.academy.wikibot.logs.LogRecordRepository;
-import mate.academy.wikibot.service.MailScheduler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -31,17 +30,15 @@ public class Bot extends TelegramLongPollingBot {
     private final YouTubeRequestController youTubeRequestController;
     private final YouTubeRequestDto youTubeRequestDto;
     private final LogRecordRepository logRecordRepository;
-    private final MailScheduler mailScheduler;
 
     /**
      * This Bot sends video from youTube.
      */
     public Bot(YouTubeRequestController contr, YouTubeRequestDto req,
-               LogRecordRepository log, MailScheduler mailScheduler) {
+               LogRecordRepository log) {
         this.youTubeRequestController = contr;
         this.youTubeRequestDto = req;
         this.logRecordRepository = log;
-        this.mailScheduler = mailScheduler;
     }
 
     @Override

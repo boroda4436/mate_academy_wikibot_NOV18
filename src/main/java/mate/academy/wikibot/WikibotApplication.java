@@ -28,7 +28,7 @@ public class WikibotApplication implements CommandLineRunner {
         }
     }
 
-    public static void main(String[] args) throws Throwable {
+    public static void main(String[] args) {
         SpringApplication.run(WikibotApplication.class, args);
     }
 }
