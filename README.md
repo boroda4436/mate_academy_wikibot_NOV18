@@ -90,10 +90,10 @@ Start project. Point to http://localhost:8080
 After following the above steps you will have two remotes ‘bchupika’ and ‘origin’. You may check it like this: 
   * git remote -vv
 
-bchupika https://github.com/boroda4436/mate_academy_wikibot_NOV18.git (fetch)
-bchupika https://github.com/boroda4436/mate_academy_wikibot_NOV18.git (push)
-origin https://github.com/<*your_github_user_name*>/mate_academy_wikibot_NOV18.git (fetch)
-origin https://github.com/<*your_github_user_name*>/mate_academy_wikibot_NOV18.git (push)
+bchupika https://github.com/boroda4436/mate_academy_wikibot_NOV18.git (fetch) <br />
+bchupika https://github.com/boroda4436/mate_academy_wikibot_NOV18.git (push) <br />
+origin https://github.com/<*your_github_user_name*>/mate_academy_wikibot_NOV18.git (fetch) <br />
+origin https://github.com/<*your_github_user_name*>/mate_academy_wikibot_NOV18.git (push) <br />
 
 After you are done with your local changes push your current local branch to your origin by:
   * git push origin <*name_of_local_branch*>
