@@ -24,11 +24,7 @@ public class WikibotApplication implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         TelegramBotsApi botsApi = new TelegramBotsApi();
         try {
-            log.info("Removing bot webhooks...");
-            bot.clearWebhook();
-            log.info("Webhook was removed...");
             botsApi.registerBot(bot);
-            log.info("Bot was registered...");
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
