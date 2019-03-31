@@ -10,3 +10,11 @@ script:
 cache:
   directories:
   - $HOME/.m2
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_API_KEY
+  app: youtubebot-jv-nov18
+  on:
+    repo: boroda4436/mate_academy_wikibot_NOV18
+  run: "java -jar target/youtube-jv-nov18.jar --youtube.Api.Key=$YOUTUBE_API_KEY --bot.username=$TELEGRAM_BOT_USERNAME --bot.token=$TELEGRAM_API_KEY"
