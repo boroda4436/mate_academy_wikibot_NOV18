@@ -4,9 +4,16 @@ jdk:
 # would just use default install/script but the ./mvnw script errors on travis
 # obviously this only works for maven builds right now...
 install:
-- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dbot.username=$TELEGRAM_BOT_USERNAME -Dbot.token=$TELEGRAM_API_KEY -B -V
 script:
-- mvn clean install
+- mvn clean install -Dbot.username=$TELEGRAM_BOT_USERNAME -Dbot.token=$TELEGRAM_API_KEY
 cache:
   directories:
   - $HOME/.m2
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_API_KEY
+  app: youtubebot-jv-nov18
+  on:
+    repo: boroda4436/mate_academy_wikibot_NOV18
