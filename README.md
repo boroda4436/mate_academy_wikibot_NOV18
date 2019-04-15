@@ -42,16 +42,7 @@ at your telegram chat!
 
 * Create a new telegram bot.
 
-![screenshotFor TelegramBot](/images/telegramStart.PNG)
-
-  Use the /newbot command in you Telegram client to create a new bot. The BotFather will ask you for a name and username, then generate an authorization token for your new bot.
-  
-  The name of your bot is displayed in contact details and elsewhere.
-  
-  The Username is a short name, to be used in mentions and telegram.me links. Usernames are 5-32 characters long and are case insensitive, but may only include Latin characters, numbers, and underscores. Your bot's username must end in ‘bot’, e.g. ‘tetris_bot’ or ‘TetrisBot’.
- 
-  The token is a string along the lines of 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw that is required to authorize the bot and send requests to the Bot API. Keep your token secure and store it safely, it can be used by anyone to control your bot. 
-
+[Check how to obtain Telegram credentials](https://github.com/boroda4436/mate_academy_wikibot_NOV18/wiki/How-to-obtain--Telegram-bot-credentials%3F)
 
 * Configure YouTube API v3 and obtain an API key.
 
