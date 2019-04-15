@@ -54,18 +54,9 @@ at your telegram chat!
 
 
 * Configure YouTube API v3 and obtain an API key.
-1) Go to https://developers.google.com/ and log in or create an account, if necessary.
-2) After logging in go to this link https://console.developers.google.com/project and click on the blue CREATE PROJECT button as depicted in the photo below. Wait a moment as google prepares your project.
-![screenshotFor youtubeAPI](/images/APIimg.png)
 
-3) Fill in whatever Project Name you want.
-![screenshotFor youtubeAPIproject](/images/APIprojectName.png)
+[Check how to obtain YouTube credentials.](https://github.com/boroda4436/mate_academy_wikibot_NOV18/wiki/How-to-obtain-YouTube-API-key%3F)
 
-4) Then click GoogleAPIs link in the top left corner and then click the link option called “YouTube Data API.” It’s under YouTube API’s. You can see it highlighted in the photo below, bottom right.
-![screenshotFor youtubeAPIproject](/images/APIchooseyutube.png)
-
-5) Get your API key from credentials directory
-![screenshotFor youtubeAPIproject](/images/APIcredentials.png)
 
 * Install Git
 * Fork bchupika/mate_academy_wikibot_NOV18 branch into your personal GitHub account. 
