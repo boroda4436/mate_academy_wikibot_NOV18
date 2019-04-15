@@ -1,5 +1,6 @@
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/boroda4436/mate_academy_wikibot_NOV18.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/boroda4436/mate_academy_wikibot_NOV18/context:java)
 [![Build Status](https://travis-ci.com/boroda4436/mate_academy_wikibot_NOV18.svg?branch=master)](https://travis-ci.com/boroda4436/mate_academy_wikibot_NOV18)
+[![Telegram](http://trellobot.doomdns.org/telegrambadge.svg)](https://telegram.me/mawb_nov_18_bot)
 
 # MAYouTubeBot
 ![MAYouTubeBot](/images/youtube_telegram.png)
