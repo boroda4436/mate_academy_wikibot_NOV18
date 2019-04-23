@@ -1,6 +1,6 @@
-package mate.academy.wikibot.logs;
+package mate.academy.wikibot.entities;
 
-import com.google.api.client.util.DateTime;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,5 +25,5 @@ public class LogRecord {
     private Long id;
     private String message;
     private Long chatId;
-    private DateTime date;
+    private LocalDateTime date;
 }

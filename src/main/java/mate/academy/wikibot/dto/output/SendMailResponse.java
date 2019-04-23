@@ -1,4 +1,4 @@
-package mate.academy.wikibot.dto;
+package mate.academy.wikibot.dto.output;
 
 import java.util.List;
 

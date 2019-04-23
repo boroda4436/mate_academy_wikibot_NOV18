@@ -1,10 +1,9 @@
 package mate.academy.wikibot.service;
 
-import mate.academy.wikibot.dto.SendMailRequest;
-import mate.academy.wikibot.dto.SendMailResponse;
+import mate.academy.wikibot.dto.input.SendMailRequest;
+import mate.academy.wikibot.dto.output.SendMailResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 
 @Component
 public class StatisticMailScheduler {
