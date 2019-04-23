@@ -1,4 +1,4 @@
-package mate.academy.wikibot.dto;
+package mate.academy.wikibot.dto.input;
 
 import lombok.Data;
 

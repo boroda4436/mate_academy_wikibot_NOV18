@@ -1,13 +1,15 @@
 package mate.academy.wikibot.bot;
 
-import com.google.api.client.util.DateTime;
 import com.google.api.services.youtube.model.SearchResult;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import mate.academy.wikibot.controllers.YouTubeRequestController;
-import mate.academy.wikibot.dto.YouTubeRequestDto;
-import mate.academy.wikibot.logs.LogRecord;
-import mate.academy.wikibot.logs.LogRecordRepository;
+import mate.academy.wikibot.dto.input.YouTubeRequestDto;
+import mate.academy.wikibot.entities.LogRecord;
+import mate.academy.wikibot.repository.LogRecordRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -92,7 +94,9 @@ public class Bot extends TelegramLongPollingBot {
         LogRecord logRecord = LogRecord.builder()
                 .message(update.getMessage().getText())
                 .chatId(update.getMessage().getChatId())
-                .date(new DateTime(update.getMessage().getDate() * 1000L))
+                .date(LocalDateTime.ofInstant(
+                        Instant.ofEpochMilli(update.getMessage().getDate() * 1000L),
+                        ZoneId.systemDefault()))
                 .build();
 
         logRecordRepository.save(logRecord);

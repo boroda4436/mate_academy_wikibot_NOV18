@@ -1,7 +1,5 @@
 package mate.academy.wikibot.controllers;
 
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
@@ -13,7 +11,7 @@ import com.google.api.services.youtube.model.SearchResult;
 import java.io.IOException;
 import java.util.List;
 
-import mate.academy.wikibot.dto.YouTubeRequestDto;
+import mate.academy.wikibot.dto.input.YouTubeRequestDto;
 
 import org.springframework.stereotype.Controller;
 
@@ -29,11 +27,8 @@ public class YouTubeRequestController {
      * @return list of video SearchResult.
      */
     public List<SearchResult> getListOfVideo(YouTubeRequestDto requestDto) throws IOException {
-        YouTube youTube = new YouTube.Builder(in, jsonFactory, new HttpRequestInitializer() {
-            @Override
-            public void initialize(HttpRequest httpRequest) throws IOException {
-            }
-        }).setApplicationName("app").build();
+        YouTube youTube = new YouTube.Builder(in, jsonFactory, httpRequest -> { })
+                .setApplicationName("app").build();
 
         YouTube.Search.List search = youTube.search().list("id,snippet");
         search.setKey(requestDto.getApiKey());
