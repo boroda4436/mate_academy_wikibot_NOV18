@@ -33,7 +33,7 @@ public class HttpClient {
     private static String CONTENT_TYPE_JSON = "application/json";
 
     private final BaseSerializer serializer;
-    
+
     private org.apache.http.client.HttpClient client;
     private String contentType = CONTENT_TYPE_JSON;
 
@@ -67,14 +67,15 @@ public class HttpClient {
 
     /**
      * Perform GET request.
-     * @param requestObj the request object to be send
+     *
+     * @param requestObj    the request object to be send
      * @param connectionUrl the URL to connect and execute request
-     * @param respClass the class we are expecting to receive response
-     * @param <T> the class we are expecting to receive response
+     * @param respClass     the class we are expecting to receive response
+     * @param <T>           the class we are expecting to receive response
      * @return the response of GET request
      * @throws Exception the IOException
      */
-    public synchronized <T> T send(String connectionUrl, Object requestObj, Class<T> respClass)
+    public <T> T send(String connectionUrl, Object requestObj, Class<T> respClass)
             throws Exception {
         lock.lock();
         try {
@@ -91,12 +92,13 @@ public class HttpClient {
 
     /**
      * Perform GET request and get String representation of response.
-     * @param requestObj the request object to be send
+     *
+     * @param requestObj    the request object to be send
      * @param connectionUrl the URL to connect and execute request
      * @return the response of GET request
      * @throws Exception the IOException
      */
-    public synchronized String send(String connectionUrl, Object requestObj) throws Exception {
+    public String send(String connectionUrl, Object requestObj) throws Exception {
         lock.lock();
         try {
             HttpResponse response = post(connectionUrl, requestObj, "application/json");
@@ -111,13 +113,14 @@ public class HttpClient {
 
     /**
      * Perform GET request.
+     *
      * @param connectionUrl the URL to connect and execute request
-     * @param respClass the class we are expecting to receive response
-     * @param <T> the class we are expecting to receive response
+     * @param respClass     the class we are expecting to receive response
+     * @param <T>           the class we are expecting to receive response
      * @return the response of GET request
      * @throws Exception the IOException
      */
-    public synchronized <T> T get(String connectionUrl, Class<T> respClass) throws Exception {
+    public <T> T get(String connectionUrl, Class<T> respClass) throws Exception {
         lock.lock();
         try {
 
