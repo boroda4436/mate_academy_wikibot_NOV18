@@ -47,7 +47,6 @@ public class Bot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         String message = update.getMessage().getText();
         log(update);
-        sendMsg(update.getMessage().getChatId().toString(), message);
         youTubeRequestDto.setApiKey(youtubeApiKey);
         youTubeRequestDto.setMaxResults(10);
         youTubeRequestDto.setQuery(message);
