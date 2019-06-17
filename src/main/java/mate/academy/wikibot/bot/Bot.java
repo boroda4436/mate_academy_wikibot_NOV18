@@ -6,6 +6,8 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+
+import lombok.extern.log4j.Log4j2;
 import mate.academy.wikibot.controllers.YouTubeRequestController;
 import mate.academy.wikibot.dto.input.YouTubeRequestDto;
 import mate.academy.wikibot.entities.LogRecord;
@@ -20,6 +22,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 /**
  * Telegram bot that send requests and take responses to/from telegram.
  */
+@Log4j2
 @Component
 public class Bot extends TelegramLongPollingBot {
     @Value("${bot.username}")
@@ -30,16 +33,14 @@ public class Bot extends TelegramLongPollingBot {
     private String youtubeApiKey;
 
     private final YouTubeRequestController youTubeRequestController;
-    private final YouTubeRequestDto youTubeRequestDto;
     private final LogRecordRepository logRecordRepository;
 
     /**
      * This Bot sends video from youTube.
      */
-    public Bot(YouTubeRequestController contr, YouTubeRequestDto req,
+    public Bot(YouTubeRequestController contr,
                LogRecordRepository log) {
         this.youTubeRequestController = contr;
-        this.youTubeRequestDto = req;
         this.logRecordRepository = log;
     }
 
@@ -47,15 +48,19 @@ public class Bot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         log(update);
         String message = update.getMessage().getText();
+        YouTubeRequestDto youTubeRequestDto = new YouTubeRequestDto();
         youTubeRequestDto.setApiKey(youtubeApiKey);
         youTubeRequestDto.setMaxResults(10);
         youTubeRequestDto.setQuery(message);
         youTubeRequestDto.setTopicId(message);
         List<SearchResult> listOfVideo = null;
+
         try {
             listOfVideo = youTubeRequestController.getListOfVideo(youTubeRequestDto);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Can't fetch the list of video. Request: {}.", youTubeRequestDto);
+            sendMsg(update.getMessage().getChatId().toString(), "Ooops:( Something went wrong. "
+                    + "We can't find video with " + message + " keyword");
         }
         if (listOfVideo != null) {
             for (SearchResult searchResult : listOfVideo) {
@@ -77,7 +82,8 @@ public class Bot extends TelegramLongPollingBot {
 
     private void sendMsg(String chatId, String s) {
         if (s.equals("/start")) {
-            s = "Hello World";
+            s = "Hello! Let's find the 10 random video! Please: enter a random word... "
+                    + "Or feel free to ask some /help";
         }
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
