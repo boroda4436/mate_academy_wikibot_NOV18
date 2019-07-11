@@ -1,3 +1,4 @@
+# To build a docker image: docker  build -t bchupika/youtube-jv-nov18 .
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 ARG JAR_FILE
