@@ -54,3 +54,4 @@ public class StatisticsController {
         return StatisticDataResponseDto.builder().chatId(chatId).requests(allRequests).build();
     }
 }
+
