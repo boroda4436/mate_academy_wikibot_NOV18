@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <checkstyleVersion>8.18</checkstyleVersion>
+        <checkstyleVersion>8.29</checkstyleVersion>
         <mavenCheckstylePluginVersion>2.17</mavenCheckstylePluginVersion>
         <sevntuVersion>1.24.2</sevntuVersion>
         <mavenSurefirePlugin.version>3.0.0-M3</mavenSurefirePlugin.version>
